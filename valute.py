@@ -15,4 +15,4 @@ def create_buttons():
 
 def get_data(key):
     res = create_request()
-    return str(res['Valute'][key]['Value'])
+    return str(res['Valute'][key]['Value']) + 'руб.'

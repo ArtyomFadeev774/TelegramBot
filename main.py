@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import telebot
 from telebot import types
 from valute import *
+from hello import *
 
 
 load_dotenv()
@@ -22,10 +23,15 @@ def create_keyboard():
 def start(message):
     #print(message)
     bot.send_message(message.from_user.id, 'Привет', reply_markup=create_keyboard())
+    bot.send_message(message.from_user.id, hello, reply_markup=create_keyboard())
 
 @bot.message_handler(content_types=['text'])
 def go(message):
-    bot.send_message(message.from_user.id, message.text)
+    try:
+        res = get_data(message.text)
+        bot.send_message(message.from_user.id, res)
+    except: 
+        bot.send_message(message.from_user.id, message.text)
 
 
 
